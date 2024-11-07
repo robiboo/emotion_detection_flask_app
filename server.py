@@ -17,6 +17,10 @@ def emotion_detection():
     # Get the emotion scores by calling the emotion_detection method
     response = emotion_detector(text_to_analyze)
 
+    # Return text if the dominant emotion is None
+    if response['dominant_emotion'] == None:
+        return "Invalid text! Please try again!"
+
     # Extract the emotion scores and dominant emotion from the response
     anger_score = response['anger']
     disgust_score = response['disgust']
@@ -31,7 +35,6 @@ def emotion_detection():
         f"'fear' : {fear_score}, 'joy' : {joy_score} and 'sadness' : {sadness_score}. "
         f"The dominant emotion is {dominant_emotion}."
     )
-
     # Return the formatted result directly as the response
     return formatted_result
 
